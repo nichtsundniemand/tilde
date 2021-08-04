@@ -1,0 +1,6 @@
+[user]
+	email = therufuser@gmail.com
+	name = therufuser
+[core]
+	editor = kak
+	pager = bat
