@@ -1,0 +1,4 @@
+# Put Go's stuff in more standard locations
+GOPATH=/home/therufuser/.local/share/go
+GOMODCACHE=/home/therufuser/.local/lib/go
+GOBIN=/home/therufuser/.local/bin
