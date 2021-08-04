@@ -1,0 +1,15 @@
+### Style configuration
+
+# Wallpaper
+output * bg ~/.wallpapers/magic/616622_1080_patched.png fill
+
+# Layout
+gaps inner 11
+default_border none
+
+# Colors
+set $color_bg #013631
+set $color_text #F7F2DD
+set $color_highlight #D08A13
+set $color_text_highlight #3A2A2A
+

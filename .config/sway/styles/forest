@@ -1,0 +1,15 @@
+### Style configuration
+
+# Wallpaper
+output * bg ~/.wallpapers/fog-3622519_1920.jpg fill
+
+# Layout
+gaps inner 11
+default_border pixel 3
+
+# Colors
+set $color_bg #445E49
+set $color_text #F7F2DD
+set $color_highlight #849B6CA0
+set $color_text_highlight #3A2A2A
+
