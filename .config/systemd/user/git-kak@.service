@@ -1,0 +1,9 @@
+[Unit]
+Description=Kakoune Daemon for git-Repo '%I'
+
+[Service]
+WorkingDirectory=%I
+ExecStart=/usr/bin/sh -c "kak -d -s $(basename %I)"
+
+[Install]
+WantedBy=default.target
