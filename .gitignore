@@ -3,6 +3,7 @@
 /hacking
 /media
 /tmp
+/secrets
 /.cache
 /.histfile
 /.lesshst
