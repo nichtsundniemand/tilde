@@ -3,4 +3,6 @@
 	name = therufuser
 [core]
 	editor = kak
-	pager = bat
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
