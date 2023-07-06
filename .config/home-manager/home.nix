@@ -21,7 +21,6 @@
     pkgs.git
     pkgs.htop
     pkgs.jq
-    pkgs.kakoune
     pkgs.qutebrowser
     pkgs.zsh
 
@@ -29,9 +28,6 @@
     pkgs.cargo
     pkgs.cue
     pkgs.go
-    pkgs.gopls
-    pkgs.python310Packages.python-lsp-server
-    pkgs.rust-analyzer
 
     # Media
     pkgs.mpv
@@ -84,4 +80,30 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.kakoune = {
+    enable = true;
+    plugins = [
+      pkgs.gopls
+      pkgs.kakounePlugins.kak-lsp
+      pkgs.python310Packages.python-lsp-server
+      pkgs.rust-analyzer
+    ];
+
+    config = {
+      indentWidth = 0;
+      tabStop = 4;
+      numberLines.enable = true;
+
+      hooks = [
+        {
+          name = "WinSetOption";
+          option = "filetype=(c|cpp|go|rust|python)";
+          commands = "lsp-enable-window";
+        }
+      ];
+    };
+
+    extraConfig = "eval %sh{kak-lsp --kakoune -s $kak_session}";
+  };
 }

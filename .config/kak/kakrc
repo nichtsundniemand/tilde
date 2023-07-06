@@ -1,9 +1,0 @@
-set global indentwidth 0
-set global tabstop 4
-addhl global/ number-lines
-
-# Setup kak-lsp
-eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(python|go|c|cpp|rust) %{
-	lsp-enable-window
-}
