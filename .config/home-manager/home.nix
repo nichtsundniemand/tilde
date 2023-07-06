@@ -35,6 +35,49 @@
     pkgs.spotify
     pkgs.yt-dlp
 
+    # Other Packages - uninstalled
+    # cutter-2.2.1
+    # dhex-0.69
+    # dive-0.10.0
+    # efibootmgr-18
+    # entr-5.2
+    # evolution-3.48.3
+    # firefox-115.0b9
+    # fragments-2.1
+    # gdb-13.2
+    # geary-43.0
+    # gimp-2.10.34
+    # helvum-0.4.0
+    # hexedit-1.6
+    # hyx-2021.06.09
+    # i2c-tools-4.3
+    # imv-4.4.0
+    # inkscape-1.2.2
+    # keepassxc-2.7.4
+    # kpat-23.04.2
+    # libreoffice-7.4.7.2-wrapped
+    # mediainfo-23.04
+    # mesa-23.1.3
+    # minicom-2.8
+    # nautilus-44.2.1
+    # ncdu-2.2.2
+    # netcat-gnu-0.7.1
+    # nmap-7.94
+    # pulseview-0.4.2
+    # pv-1.6.20
+    # qemu-8.0.2
+    # radare2-5.8.8
+    # seahorse-43.0
+    # simple-scan-44.0
+    # smartmontools-7.3
+    # socat-1.7.4.4
+    # sqlc-1.18.0
+    # strace-6.4
+    # tcpdump-4.99.4
+    # telegram-desktop-4.8.4
+    # wesnoth-1.16.9
+    # wireshark-qt-4.0.6
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
