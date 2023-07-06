@@ -128,7 +128,6 @@
     enable = true;
     plugins = [
       pkgs.gopls
-      pkgs.kakounePlugins.kak-lsp
       pkgs.python310Packages.python-lsp-server
       pkgs.rust-analyzer
     ];
@@ -147,6 +146,6 @@
       ];
     };
 
-    extraConfig = "eval %sh{kak-lsp --kakoune -s $kak_session}";
+    extraConfig = "eval %sh{${pkgs.kakounePlugins.kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}";
   };
 }
