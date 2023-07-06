@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = "wirklichniemand";
   home.homeDirectory = "/home/wirklichniemand";
 
@@ -15,12 +13,31 @@
   # release notes.
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+    # Basics
+    pkgs.bat
+    pkgs.brightnessctl
+    pkgs.exa
+    pkgs.git
+    pkgs.htop
+    pkgs.jq
+    pkgs.kakoune
+    pkgs.qutebrowser
+    pkgs.zsh
+
+    # Development
+    pkgs.cargo
+    pkgs.cue
+    pkgs.go
+    pkgs.gopls
+    pkgs.python310Packages.python-lsp-server
+    pkgs.rust-analyzer
+
+    # Media
+    pkgs.mpv
+    pkgs.pulsemixer
+    pkgs.spotify
+    pkgs.yt-dlp
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
