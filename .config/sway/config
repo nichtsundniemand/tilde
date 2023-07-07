@@ -53,4 +53,3 @@ client.focused $color_highlight $color_highlight $color_text_highlight
 
 # Export env to systemd
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"
-exec "/usr/share/sway/scripts/inactive-windows-transparency.py -o 0.67"
