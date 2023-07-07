@@ -22,3 +22,4 @@ settings:
   url.searchengines:
     global:
       DEFAULT: https://google.com/search?q={}
+      nixpkgs: https://search.nixos.org/packages?channel=unstable&query={}
