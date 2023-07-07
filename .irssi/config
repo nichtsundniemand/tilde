@@ -1,0 +1,181 @@
+servers = (
+  { address = "irc.libera.chat"; chatnet = "LiberaChat"; port = "6697"; use_tls = "yes"; tls_verify = "no"; autoconnect = "yes"; },
+  { address = "irc.tilde.chat";  chatnet = "~town";      port = "6697"; use_tls = "yes"; tls_verify = "no"; autoconnect = "yes"; }
+);
+
+chatnets = {
+  LiberaChat = { type = "IRC"; };
+  "~town"    = { type = "IRC"; };
+};
+
+channels = (
+  { name = "##English";       chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#c++-basic";      chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#mpv-devel";      chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#mpv";            chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#mpv-offtopic";   chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#osdev";          chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#mesonbuild";     chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#gentoo-games";   chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#valgrind-dev";   chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#devlol";         chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#dragonbox-game"; chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#d3d9";           chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#intel-3d";       chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#opengl";         chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#vulkan";         chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "##cooking";       chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#raspberrypi";    chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#lobsters";       chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "##math";          chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#python";         chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#friendlycoders"; chatnet = "LiberaChat"; autojoin = "yes"; },
+  { name = "#libretro";       chatnet = "LiberaChat"; autojoin = "yes"; }
+);
+
+aliases = {
+  ATAG = "WINDOW SERVER";
+  ADDALLCHANS = "SCRIPT EXEC foreach my \\$channel (Irssi::channels()) { Irssi::command(\"CHANNEL ADD -auto \\$channel->{visible_name} \\$channel->{server}->{tag} \\$channel->{key}\")\\;}";
+  B = "BAN";
+  BACK = "AWAY";
+  BANS = "BAN";
+  BYE = "QUIT";
+  C = "CLEAR";
+  CALC = "EXEC - if command -v bc >/dev/null 2>&1\\; then printf '%s=' '$*'\\; echo '$*' | bc -l\\; else echo bc was not found\\; fi";
+  CHAT = "DCC CHAT";
+  DATE = "TIME";
+  DEHIGHLIGHT = "DEHILIGHT";
+  DESCRIBE = "ACTION";
+  DHL = "DEHILIGHT";
+  EXEMPTLIST = "MODE $C +e";
+  EXIT = "QUIT";
+  GOTO = "SCROLLBACK GOTO";
+  HIGHLIGHT = "HILIGHT";
+  HL = "HILIGHT";
+  HOST = "USERHOST";
+  INVITELIST = "MODE $C +I";
+  J = "JOIN";
+  K = "KICK";
+  KB = "KICKBAN";
+  KN = "KNOCKOUT";
+  LAST = "LASTLOG";
+  LEAVE = "PART";
+  M = "MSG";
+  MUB = "UNBAN *";
+  N = "NAMES";
+  NMSG = "^MSG";
+  P = "PART";
+  Q = "QUERY";
+  RESET = "SET -default";
+  RUN = "SCRIPT LOAD";
+  SAY = "MSG *";
+  SB = "SCROLLBACK";
+  SBAR = "STATUSBAR";
+  SIGNOFF = "QUIT";
+  SV = "MSG * Irssi $J ($V) - https://irssi.org";
+  T = "TOPIC";
+  UB = "UNBAN";
+  UMODE = "MODE $N";
+  UNSET = "SET -clear";
+  W = "WHO";
+  WC = "WINDOW CLOSE";
+  WG = "WINDOW GOTO";
+  WJOIN = "JOIN -window";
+  WI = "WHOIS";
+  WII = "WHOIS $0 $0";
+  WL = "WINDOW LIST";
+  WN = "WINDOW NEW HIDDEN";
+  WQUERY = "QUERY -window";
+  WW = "WHOWAS";
+};
+
+statusbar = {
+  items = {
+    barstart      = "{sbstart}";
+    barend        = "{sbend}";
+    topicbarstart = "{topicsbstart}";
+    topicbarend   = "{topicsbend}";
+    time          = "{sb $Z}";
+    user          = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
+    window        = "{sb $winref:$tag/$itemname{sbmode $M}}";
+    window_empty  = "{sb $winref{sbservertag $tag}}";
+    prompt        = "{prompt $[.15]itemname}";
+    prompt_empty  = "{prompt $winname}";
+    topic         = " $topic";
+    topic_empty   = " Irssi v$J - https://irssi.org";
+    lag           = "{sb Lag: $0-}";
+    act           = "{sb Act: $0-}";
+    more          = "-- more --";
+  };
+
+  default = {
+    window = {
+      disabled  = "no";
+      type      = "window";
+      placement = "bottom";
+      position  = "1";
+      visible   = "active";
+      items     = {
+        barstart     = { priority = "100"; };
+        time         = { };
+        user         = { };
+        window       = { };
+        window_empty = { };
+        lag          = { priority = "-1"; };
+        act          = { priority = "10"; };
+        more         = { priority = "-1";  alignment = "right"; };
+        barend       = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    window_inact = {
+      type      = "window";
+      placement = "bottom";
+      position  = "1";
+      visible   = "inactive";
+      items     = {
+        barstart     = { priority = "100"; };
+        window       = { };
+        window_empty = { };
+        more         = { priority = "-1";  alignment = "right"; };
+        barend       = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    prompt = {
+      type      = "root";
+      placement = "bottom";
+      position  = "100";
+      visible   = "always";
+      items     = {
+        prompt       = { priority = "-1"; };
+        prompt_empty = { priority = "-1"; };
+        input        = { priority = "10"; };
+      };
+    };
+
+    topic = {
+      type      = "root";
+      placement = "top";
+      position  = "1";
+      visible   = "always";
+      items     = {
+        topicbarstart = { priority = "100"; };
+        topic         = { };
+        topic_empty   = { };
+        topicbarend   = { priority = "100"; alignment = "right"; };
+      };
+    };
+  };
+};
+
+settings = {
+  core = {
+    real_name = "Unknown";
+    user_name = "wirklichniemand";
+    nick      = "wirklichniemand";
+  };
+  "fe-text" = { actlist_sort = "refnum"; };
+};
+
+ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
