@@ -1,0 +1,30 @@
+# Configuration file for Wireshark 3.6.6.
+#
+# This file is regenerated each time preferences are saved within
+# Wireshark. Making manual changes should be safe, however.
+# Preferences that have been commented out have not been
+# changed from their default value.
+
+####### User Interface: Font ########
+
+# Font name for packet list, protocol tree, and hex dump panes. (Qt)
+# A string
+gui.qt.font_name: Nimbus Mono PS,9,-1,5,50,0,0,0,0,0
+
+####### Capture ########
+
+# Interface link-layer header types (Ex: en0(1),en1(143),...)
+# A string
+capture.devices_linktypes: wlan0(1),any(113),lo(1),enp0s25(1),virbr1(1),virbr0(1),bluetooth0(201),bluetooth-monitor(254),nflog(239),nfqueue(228),dbus-system(231),dbus-session(231),ciscodump(147),dpauxmon(275),randpkt(147),sdjournal(147),sshdump(147),udpdump(252)
+
+# Interface buffer size (Ex: en0(1),en1(143),...)
+# A string
+capture.devices_buffersize: wlan0(2),any(2),lo(2),enp0s25(2),virbr1(2),virbr0(2),bluetooth0(2),bluetooth-monitor(2),nflog(2),nfqueue(2),dbus-system(2),dbus-session(2),wwp0s20u4(2),ciscodump(2),dpauxmon(2),randpkt(2),sdjournal(2),sshdump(2),udpdump(2)
+
+# Interface snap length (Ex: en0(65535),en1(1430),...)
+# A string
+capture.devices_snaplen: wlan0:0(262144),any:0(262144),lo:0(262144),enp0s25:0(262144),virbr1:0(262144),virbr0:0(262144),bluetooth0:0(262144),bluetooth-monitor:0(262144),nflog:0(262144),nfqueue:0(262144),dbus-system:0(262144),dbus-session:0(262144),wwp0s20u4:0(262144),ciscodump:0(262144),dpauxmon:0(262144),randpkt:0(262144),sdjournal:0(262144),sshdump:0(262144),udpdump:0(262144)
+
+# Interface promiscuous mode (Ex: en0(0),en1(1),...)
+# A string
+capture.devices_pmode: wlan0(1),any(1),lo(1),enp0s25(1),virbr1(1),virbr0(1),bluetooth0(1),bluetooth-monitor(1),nflog(1),nfqueue(1),dbus-system(1),dbus-session(1),wwp0s20u4(1),ciscodump(1),dpauxmon(1),randpkt(1),sdjournal(1),sshdump(1),udpdump(1)
