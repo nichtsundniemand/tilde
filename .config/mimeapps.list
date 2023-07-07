@@ -1,0 +1,13 @@
+[Default Applications]
+x-scheme-handler/tg=org.telegram.desktop.desktop
+application/pdf=org.pwmt.zathura.desktop
+text/html=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
+application/xml=firefox.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-4ITZ60.desktop;userapp-Telegram Desktop-FVCRW1.desktop;org.telegram.desktop.desktop;
+application/xml=firefox.desktop;
