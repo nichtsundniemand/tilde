@@ -1,1 +1,6 @@
 /kak/kakrc
+/systemd/user/pipewire-pulse.service
+/systemd/user/pipewire-pulse.socket
+/systemd/user/pipewire.service
+/systemd/user/pipewire.socket
+/systemd/user/wireplumber.service

@@ -31,6 +31,7 @@
 
     # Media
     pkgs.mpv
+    pkgs.pipewire
     pkgs.pulsemixer
     pkgs.spotify
     pkgs.yt-dlp
@@ -105,6 +106,13 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+    # Hacks to allow running pipewire as a user service...
+    ".config/systemd/user/pipewire.service".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire.service";
+    ".config/systemd/user/pipewire.socket".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire.socket";
+    ".config/systemd/user/pipewire-pulse.service".source = "${pkgs.pipewire.pulse}/lib/systemd/user/pipewire-pulse.service";
+    ".config/systemd/user/pipewire-pulse.socket".source = "${pkgs.pipewire.pulse}/lib/systemd/user/pipewire-pulse.socket";
+    ".config/systemd/user/wireplumber.service".source = "${pkgs.wireplumber.out}/lib/systemd/user/wireplumber.service";
   };
 
   # You can also manage environment variables but you will have to manually
