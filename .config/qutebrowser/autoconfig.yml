@@ -6,35 +6,14 @@
 
 config_version: 2
 settings:
-  aliases:
-    global:
-      q: close
-      qa: quit
-      w: session-save
-      wq: quit --save
-      wqa: quit --save
-  backend:
-    global: webengine
   bindings.commands:
     global:
       normal:
         ',m': hint links spawn mpv --ytdl-format="bestvideo[height<=720]+bestaudio/best"
           {hint-url}
-  colors.contextmenu.menu.bg:
-    global: '#80FFFFFF'
-  colors.webpage.bg:
-    global: white
-  colors.webpage.darkmode.enabled:
-    global: false
-  content.blocking.enabled:
-    global: true
   qt.environ:
     global:
       PATH: /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/therufuser/.local/bin
-  qt.process_model:
-    global: process-per-site
-  scrolling.smooth:
-    global: false
   statusbar.show:
     global: in-mode
   tabs.show:
@@ -44,5 +23,3 @@ settings:
   url.searchengines:
     global:
       DEFAULT: https://google.com/search?q={}
-  window.transparent:
-    global: false
