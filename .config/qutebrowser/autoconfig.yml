@@ -13,9 +13,6 @@ settings:
       normal:
         ',m': hint links spawn mpv --ytdl-format="bestvideo[height<=720]+bestaudio/best"
           {hint-url}
-  qt.environ:
-    global:
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/therufuser/.local/bin
   statusbar.show:
     global: in-mode
   tabs.show:
