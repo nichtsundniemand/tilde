@@ -1,6 +1,7 @@
 /environment.d/10-home-manager.conf
 /fontconfig/conf.d/10-hm-fonts.conf
 /kak/kakrc
+/mpv/script-opts/ytdl_hook.conf
 /systemd/user/pipewire-pulse.service
 /systemd/user/pipewire-pulse.socket
 /systemd/user/pipewire.service

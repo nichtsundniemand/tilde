@@ -30,11 +30,9 @@
     pkgs.go
 
     # Media
-    pkgs.mpv
     pkgs.pipewire
     pkgs.pulsemixer
     pkgs.spotify
-    pkgs.yt-dlp
 
     # Window management
     pkgs.sway
@@ -172,5 +170,10 @@
     };
 
     extraConfig = "eval %sh{${pkgs.kakounePlugins.kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}";
+  };
+
+  programs.mpv = {
+    enable = true;
+    scriptOpts.ytdl_hook.ytdl_path = "${pkgs.yt-dlp}/bin/yt-dlp";
   };
 }
