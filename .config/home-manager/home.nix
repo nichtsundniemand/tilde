@@ -36,6 +36,14 @@
     pkgs.spotify
     pkgs.yt-dlp
 
+    # Window management
+    pkgs.sway
+    pkgs.swaybg
+    pkgs.waybar
+    pkgs.wofi
+
+    pkgs.xwayland
+
     # Other Packages - uninstalled
     # cutter-2.2.1
     # dhex-0.69
