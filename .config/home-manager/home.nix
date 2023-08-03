@@ -71,7 +71,6 @@
     # kpat-23.04.2
     # libreoffice-7.4.7.2-wrapped
     # mediainfo-23.04
-    # mesa-23.1.3
     # minicom-2.8
     # nautilus-44.2.1
     # ncdu-2.2.2
@@ -91,6 +90,9 @@
     # telegram-desktop-4.8.4
     # wesnoth-1.16.9
     # wireshark-qt-4.0.6
+
+    # This is kind of a hack - don't forget to link this output to `/run/opengl-driver/`
+    pkgs.mesa.drivers
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
