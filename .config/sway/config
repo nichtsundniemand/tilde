@@ -1,12 +1,6 @@
-### Variables
-# Terminal emulator
+# Variables
 set $term kitty -1
-# Your preferred application launcher
-# Note: it's recommended that you pass the final command to sway
-#set $menu dmenu_path | dmenu | xargs swaymsg exec
 set $menu wofi -d --show run -s .config/sway/wofi.css
-set $switcher .config/sway/switcher.sh
-# Browser
 set $browser qutebrowser
 
 # Include other config files
@@ -15,39 +9,12 @@ include style
 include monitors
 include /etc/sway/config.d/*
 
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' \
-#               resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-# Status Bar:
-# Read `man 5 sway-bar` for more information about this section.
+# Status Bar
 bar {
     swaybar_command waybar
-
-    colors {
-        statusline $color_text
-	background $color_bg
-	separator  $color_highlight
-	active_workspace $color_highlight $color_highlight #DDB0AA
-	focused_workspace $color_highlight $color_highlight $color_text_highlight
-	inactive_workspace $color_bg $color_bg $color_text
-    }
 }
 
-# Bar display
-# exec rm $SWAYSOCK.wob
-# exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob -a bottom -a right -M 32 --background-color "#80000000"
-
+# Color foo
 client.unfocused $color_bg $color_bg $color_text
 client.focused $color_highlight $color_highlight $color_text_highlight
 

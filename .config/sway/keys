@@ -1,27 +1,11 @@
-# Logo key. Use Mod1 for Alt.
 set $mod Mod4
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
 
-### Key bindings
-## Basics:
-# start a terminal
+# Basics
 bindsym $mod+Return exec $term
-
-# kill focused window
-bindsym $mod+Shift+q kill
-
-# start your launcher
 bindsym $mod+d exec $menu
-
-# start window switcher
-bindsym $mod+Shift+d exec $switcher
-
-# start a browser
 bindsym $mod+q exec $browser
+
+bindsym $mod+Shift+q kill
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -30,37 +14,22 @@ bindsym $mod+q exec $browser
 # mouse button for dragging.
 floating_modifier $mod normal
 
-# reload the configuration file
 bindsym $mod+Shift+c reload
-
-# exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
-## Moving around:
-
 # Move your focus around
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-# or use $mod+[up|down|left|right]
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # _move_ the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-# ditto, with arrow keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-## Workspaces:
+# Workspaces
 set $wp_term 
 set $wp_web web
 set $wp_chat irc
@@ -87,26 +56,21 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10: $wp_chat
 
-## Layout stuff:
-# You can "split" the current object of your focus with
-# $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.
+# Layout stuff
 bindsym $mod+b splith
 bindsym $mod+v splitv
-# Switch the current container between different layout styles
+
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-# Make the current focus fullscreen
+
 bindsym $mod+f fullscreen
-# Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
-# Swap focus between the tiling area and the floating area
+
 bindsym $mod+space focus mode_toggle
-# move focus to the parent container
 bindsym $mod+a focus parent
 
-## Scratchpad:
+## Scratchpad
 # Sway has a "scratchpad", which is a bag of holding for windows.
 # You can send windows there and get them back later.
 
@@ -119,12 +83,6 @@ bindsym $mod+minus scratchpad show
 
 ## Resizing containers:
 mode "resize" {
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    # ditto, with arrow keys
     bindsym Left resize shrink width 10px
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
@@ -143,14 +101,3 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
-
-# Fancy custom shit
-
-# Search YouTube with wofi and play through mpv
-bindsym $mod+Shift+y exec .local/bin/ytsearch.sh
-
-mode "ide" {
-    bindsym $mod+Return alacritty
-    bindsym $mod+i mode "default"
-}
-bindsym $mod+i mode "ide"
