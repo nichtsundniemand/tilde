@@ -44,6 +44,11 @@
 
     pkgs.xwayland
 
+    pkgs.aileron
+    pkgs.fira
+    pkgs.fira-code
+    pkgs.roboto
+
     # Other Packages - uninstalled
     # cutter-2.2.1
     # dhex-0.69
@@ -136,6 +141,8 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+
+  fonts.fontconfig.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
