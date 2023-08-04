@@ -16,6 +16,7 @@
   home.packages = [
     # Basics
     pkgs.bat
+    pkgs.elvish
     pkgs.exa
     pkgs.htop
     pkgs.jq
@@ -115,6 +116,43 @@
     ".config/systemd/user/pipewire-pulse.service".source = "${pkgs.pipewire.pulse}/lib/systemd/user/pipewire-pulse.service";
     ".config/systemd/user/pipewire-pulse.socket".source = "${pkgs.pipewire.pulse}/lib/systemd/user/pipewire-pulse.socket";
     ".config/systemd/user/wireplumber.service".source = "${pkgs.wireplumber.out}/lib/systemd/user/wireplumber.service";
+
+    # elvish
+    ".config/elvish/rc.elv".text = ''
+        use direnv
+        use re
+        use str
+
+        if (not (== 0 (str:compare $E:TERM "linux"))) {
+        	set edit:prompt = {
+        		var bg = green
+        		var fg = white
+
+        		var path = (re:replace '^~$' '🏠' (tilde-abbr $pwd))
+        		put (styled ' '$path' ' bg-$bg fg-$fg)(styled ' ' fg-$bg)
+        	}
+        }
+    '';
+    ".config/elvish/lib/direnv.elv".text = ''
+        ## hook for direnv
+        set @edit:before-readline = $@edit:before-readline {
+        	try {
+        		var m = [("${pkgs.direnv}/bin/direnv" export elvish | from-json)]
+        		if (> (count $m) 0) {
+        			set m = (all $m)
+        			keys $m | each { |k|
+        				if $m[$k] {
+        					set-env $k $m[$k]
+        				} else {
+        					unset-env $k
+        				}
+        			}
+        		}
+        	} catch e {
+        		echo $e
+        	}
+        }
+    '';
   };
 
   # You can also manage environment variables but you will have to manually

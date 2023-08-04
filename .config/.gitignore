@@ -1,3 +1,5 @@
+/elvish/lib/direnv.elv
+/elvish/rc.elv
 /environment.d/10-home-manager.conf
 /fontconfig/conf.d/10-hm-fonts.conf
 /git/config
