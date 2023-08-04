@@ -17,7 +17,6 @@
     # Basics
     pkgs.bat
     pkgs.exa
-    pkgs.git
     pkgs.htop
     pkgs.jq
     pkgs.zsh
@@ -136,7 +135,15 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  programs.git = {
+    enable = true;
 
+    userName = "nichtsundniemand";
+    userEmail = "rufus.schaefing@gmail.com";
+
+    extraConfig.core.editor = "${config.programs.kakoune.package}/bin/kak";
+    delta.enable = true;
+  };
   programs.kakoune = {
     enable = true;
     plugins = [

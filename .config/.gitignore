@@ -1,5 +1,6 @@
 /environment.d/10-home-manager.conf
 /fontconfig/conf.d/10-hm-fonts.conf
+/git/config
 /kak/kakrc
 /mpv/script-opts/ytdl_hook.conf
 /sway/config

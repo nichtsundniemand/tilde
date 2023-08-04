@@ -1,8 +1,0 @@
-[user]
-	email = rufus.schaefing@gmail.com
-	name = nichtsundniemand
-[core]
-	editor = kak
-	pager = delta
-[interactive]
-	diffFilter = delta --color-only
