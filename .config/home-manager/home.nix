@@ -303,4 +303,16 @@
       exec ${pkgs.waybar}/bin/waybar -c ${./sway/waybar.json} -s ${./sway/styles/waybar_black-yellow.css}
     '';
   };
+
+  xdg.userDirs = {
+    enable = true;
+    desktop = "${config.home.homeDirectory}/tmp";
+    download = "${config.home.homeDirectory}/downloads";
+    templates = "${config.home.homeDirectory}/";
+    publicShare = "${config.home.homeDirectory}/";
+    documents = "${config.home.homeDirectory}/docs";
+    music = "${config.home.homeDirectory}/media/music";
+    pictures = "${config.home.homeDirectory}/media/images";
+    videos = "${config.home.homeDirectory}/media/movies";
+  };
 }

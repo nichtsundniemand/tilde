@@ -13,3 +13,5 @@
 /systemd/user/sway-session.target
 /systemd/user/tray.target
 /systemd/user/wireplumber.service
+/user-dirs.conf
+/user-dirs.dirs
