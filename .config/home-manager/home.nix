@@ -133,45 +133,48 @@
 
   fonts.fontconfig.enable = true;
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
+  programs = {
+    home-manager.enable = true;
 
-    userName = "nichtsundniemand";
-    userEmail = "rufus.schaefing@gmail.com";
+    git = {
+      enable = true;
 
-    extraConfig.core.editor = "${config.programs.kakoune.package}/bin/kak";
-    delta.enable = true;
-  };
-  programs.kakoune = {
-    enable = true;
-    plugins = [
-      pkgs.gopls
-      pkgs.python310Packages.python-lsp-server
-      pkgs.rust-analyzer
-    ];
+      userName = "nichtsundniemand";
+      userEmail = "rufus.schaefing@gmail.com";
 
-    config = {
-      indentWidth = 0;
-      tabStop = 4;
-      numberLines.enable = true;
-
-      hooks = [
-        {
-          name = "WinSetOption";
-          option = "filetype=(c|cpp|go|rust|python)";
-          commands = "lsp-enable-window";
-        }
-      ];
+      extraConfig.core.editor = "${config.programs.kakoune.package}/bin/kak";
+      delta.enable = true;
     };
 
-    extraConfig = "eval %sh{${pkgs.kakounePlugins.kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}";
-  };
+    kakoune = {
+      enable = true;
+      plugins = [
+        pkgs.gopls
+        pkgs.python310Packages.python-lsp-server
+        pkgs.rust-analyzer
+      ];
 
-  programs.mpv = {
-    enable = true;
-    scriptOpts.ytdl_hook.ytdl_path = "${pkgs.yt-dlp}/bin/yt-dlp";
+      config = {
+        indentWidth = 0;
+        tabStop = 4;
+        numberLines.enable = true;
+
+        hooks = [
+          {
+            name = "WinSetOption";
+            option = "filetype=(c|cpp|go|rust|python)";
+            commands = "lsp-enable-window";
+          }
+        ];
+      };
+
+      extraConfig = "eval %sh{${pkgs.kakounePlugins.kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}";
+    };
+
+    mpv = {
+      enable = true;
+      scriptOpts.ytdl_hook.ytdl_path = "${pkgs.yt-dlp}/bin/yt-dlp";
+    };
   };
 
   wayland.windowManager.sway = {
