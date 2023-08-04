@@ -5,11 +5,11 @@
     
     "modules-left": [
         "sway/workspaces",
-        "sway/mode",
+        "sway/mode"
     ],
 
     "modules-center": [
-         "sway/window",
+         "sway/window"
     ],
     "sway/window": {
         "max-length": 50
@@ -19,10 +19,9 @@
         "network",
         "battery#main",
         "battery#backup",
-        "clock",
+        "clock"
     ],
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
@@ -57,7 +56,7 @@
     },
     "clock": {
         "format-alt": "{:%a, %d. %b  %H:%M}"
-    },
+    }
 }
 
 
