@@ -1,7 +1,0 @@
-## Monitor setup
-
-# Integrated display
-output eDP-1 pos 0 0 res 1920x1080
-
-# External
-output HDMI-A-1 pos 1920 0 res 1920x1080

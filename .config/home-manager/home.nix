@@ -16,12 +16,10 @@
   home.packages = [
     # Basics
     pkgs.bat
-    pkgs.brightnessctl
     pkgs.exa
     pkgs.git
     pkgs.htop
     pkgs.jq
-    pkgs.qutebrowser
     pkgs.zsh
 
     # Development
@@ -33,14 +31,6 @@
     pkgs.pipewire
     pkgs.pulsemixer
     pkgs.spotify
-
-    # Window management
-    pkgs.sway
-    pkgs.swaybg
-    pkgs.waybar
-    pkgs.wofi
-
-    pkgs.xwayland
 
     pkgs.aileron
     pkgs.fira
@@ -175,5 +165,95 @@
   programs.mpv = {
     enable = true;
     scriptOpts.ytdl_hook.ytdl_path = "${pkgs.yt-dlp}/bin/yt-dlp";
+  };
+
+  wayland.windowManager.sway = {
+    enable = true;
+    config = {
+      bars = [
+        {
+          command = "${pkgs.waybar}/bin/waybar";
+        }
+      ];
+      modifier = "Mod4";
+      menu = "${pkgs.wofi}/bin/wofi -d --show run -s ${./sway/styles/wofi_black-yellow.css}";
+      terminal = "${pkgs.kitty}/bin/kitty -1";
+      # This is a bit ugly but oh well...
+      keybindings = with config.wayland.windowManager.sway.config; {
+        "${modifier}+Return" = "exec ${terminal}";
+        "${modifier}+d" = "exec ${menu}";
+        "${modifier}+q" = "exec ${pkgs.qutebrowser}/bin/qutebrowser";
+        "${modifier}+Shift+q" = "kill";
+        "${modifier}+Shift+c" = "reload";
+        "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
+        "${modifier}+Left" = "focus left";
+        "${modifier}+Down" = "focus down";
+        "${modifier}+Up" = "focus up";
+        "${modifier}+Right" = "focus right";
+        "${modifier}+Shift+Left" = "move left";
+        "${modifier}+Shift+Down" = "move down";
+        "${modifier}+Shift+Up" = "move up";
+        "${modifier}+Shift+Right" = "move right";
+        "${modifier}+1" = "workspace 1";
+        "${modifier}+2" = "workspace 2";
+        "${modifier}+3" = "workspace 3";
+        "${modifier}+4" = "workspace 4";
+        "${modifier}+5" = "workspace 5";
+        "${modifier}+6" = "workspace 6";
+        "${modifier}+7" = "workspace 7";
+        "${modifier}+8" = "workspace 8";
+        "${modifier}+9" = "workspace 9";
+        "${modifier}+0" = "workspace 10";
+        "${modifier}+Shift+1" = "move container to workspace 1";
+        "${modifier}+Shift+2" = "move container to workspace 2";
+        "${modifier}+Shift+3" = "move container to workspace 3";
+        "${modifier}+Shift+4" = "move container to workspace 4";
+        "${modifier}+Shift+5" = "move container to workspace 5";
+        "${modifier}+Shift+6" = "move container to workspace 6";
+        "${modifier}+Shift+7" = "move container to workspace 7";
+        "${modifier}+Shift+8" = "move container to workspace 8";
+        "${modifier}+Shift+9" = "move container to workspace 9";
+        "${modifier}+Shift+0" = "move container to workspace 10";
+        "${modifier}+b" = "splith";
+        "${modifier}+v" = "splitv";
+        "${modifier}+s" = "layout stacking";
+        "${modifier}+w" = "layout tabbed";
+        "${modifier}+e" = "layout toggle split";
+        "${modifier}+f" = "fullscreen";
+        "${modifier}+Shift+space" = "floating toggle";
+        "${modifier}+space" = "focus mode_toggle";
+        "${modifier}+a" = "focus parent";
+        "${modifier}+Shift+minus" = "move scratchpad";
+        "${modifier}+minus" = "scratchpad show";
+        "${modifier}+r" = "mode \"resize\"";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+        "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+      };
+      modes = {
+        resize = {
+          "Left" = "resize shrink width 10px";
+          "Down" = "resize grow height 10px";
+          "Up" = "resize shrink height 10px";
+          "Right" = "resize grow width 10px";
+          "Return" = "mode default";
+          "Escape" = "mode default";
+        };
+      };
+      output = {
+        "eDP-1" = {
+          pos = "0 0";
+          res = "1920x1080";
+        };
+        "HDMI-A-1" = {
+          pos = "1920 0";
+          res = "1920x1080";
+        };
+      };
+    };
+    extraConfig = "include ${./sway/styles/black-yellow}";
   };
 }

@@ -2,8 +2,11 @@
 /fontconfig/conf.d/10-hm-fonts.conf
 /kak/kakrc
 /mpv/script-opts/ytdl_hook.conf
+/sway/config
 /systemd/user/pipewire-pulse.service
 /systemd/user/pipewire-pulse.socket
 /systemd/user/pipewire.service
 /systemd/user/pipewire.socket
+/systemd/user/sway-session.target
+/systemd/user/tray.target
 /systemd/user/wireplumber.service
