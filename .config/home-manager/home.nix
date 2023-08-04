@@ -218,11 +218,7 @@
   wayland.windowManager.sway = {
     enable = true;
     config = {
-      bars = [
-        {
-          command = "${pkgs.waybar}/bin/waybar";
-        }
-      ];
+      bars = [];
       modifier = "Mod4";
       menu = "${pkgs.wofi}/bin/wofi -d --show run -s ${./sway/styles/wofi_black-yellow.css}";
       terminal = "${pkgs.kitty}/bin/kitty -1";
@@ -302,6 +298,9 @@
         };
       };
     };
-    extraConfig = "include ${./sway/styles/black-yellow}";
+    extraConfig = ''
+      include ${./sway/styles/black-yellow}
+      exec ${pkgs.waybar}/bin/waybar -c ${./sway/waybar.json} -s ${./sway/styles/waybar_black-yellow.css}
+    '';
   };
 }
