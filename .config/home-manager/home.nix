@@ -209,6 +209,16 @@
       extraConfig = "eval %sh{${pkgs.kakounePlugins.kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}";
     };
 
+    kitty = {
+      enable = true;
+      settings = {
+        allow_remote_control = true;
+        font_size = 12;
+        background_opacity = "0.985";
+      };
+      theme = "Afterglow";
+    };
+
     mpv = {
       enable = true;
       scriptOpts.ytdl_hook.ytdl_path = "${pkgs.yt-dlp}/bin/yt-dlp";
@@ -221,7 +231,7 @@
       bars = [];
       modifier = "Mod4";
       menu = "${pkgs.wofi}/bin/wofi -d --show run -s ${./sway/styles/wofi_black-yellow.css}";
-      terminal = "${pkgs.kitty}/bin/kitty -1";
+      terminal = "${config.programs.kitty.package}/bin/kitty -1";
       # This is a bit ugly but oh well...
       keybindings = with config.wayland.windowManager.sway.config; {
         "${modifier}+Return" = "exec ${terminal}";

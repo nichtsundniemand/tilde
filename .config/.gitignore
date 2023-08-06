@@ -4,6 +4,7 @@
 /fontconfig/conf.d/10-hm-fonts.conf
 /git/config
 /kak/kakrc
+/kitty/kitty.conf
 /mpv/script-opts/ytdl_hook.conf
 /sway/config
 /systemd/user/pipewire-pulse.service
