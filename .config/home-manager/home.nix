@@ -224,6 +224,7 @@ in
 
     mpv = {
       enable = true;
+      config.ytdl-format = "bestvideo[height<=720]+bestaudio/best";
       scriptOpts.ytdl_hook.ytdl_path = "${pkgs.yt-dlp}/bin/yt-dlp";
     };
   };

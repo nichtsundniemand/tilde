@@ -5,6 +5,7 @@
 /git/config
 /kak/kakrc
 /kitty/kitty.conf
+/mpv/mpv.conf
 /mpv/script-opts/ytdl_hook.conf
 /sway/config
 /systemd/user/pipewire-pulse.service
