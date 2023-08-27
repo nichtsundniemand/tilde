@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, specialArgs, ... }:
 
+let
+  inherit (specialArgs) sops-nix;
+in
 {
   home.username = "wirklichniemand";
   home.homeDirectory = "/home/wirklichniemand";

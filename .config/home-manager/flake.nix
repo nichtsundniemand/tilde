@@ -8,9 +8,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, sops-nix, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -18,12 +22,8 @@
       homeConfigurations."wirklichniemand" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
         modules = [ ./home.nix ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+        extraSpecialArgs = { sops-nix = sops-nix; };
       };
     };
 }
