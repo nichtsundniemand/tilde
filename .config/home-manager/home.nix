@@ -118,7 +118,7 @@ in
     ".config/systemd/user/pipewire.socket".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire.socket";
     ".config/systemd/user/pipewire-pulse.service".source = "${pkgs.pipewire.pulse}/lib/systemd/user/pipewire-pulse.service";
     ".config/systemd/user/pipewire-pulse.socket".source = "${pkgs.pipewire.pulse}/lib/systemd/user/pipewire-pulse.socket";
-    ".config/systemd/user/wireplumber.service".source = "${pkgs.wireplumber.out}/lib/systemd/user/wireplumber.service";
+    ".config/systemd/user/pipewire-session-manager.service".source = "${pkgs.wireplumber.out}/lib/systemd/user/wireplumber.service";
 
     # elvish
     ".config/elvish/rc.elv".text = ''

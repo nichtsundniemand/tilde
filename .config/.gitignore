@@ -10,10 +10,10 @@
 /sway/config
 /systemd/user/pipewire-pulse.service
 /systemd/user/pipewire-pulse.socket
+/systemd/user/pipewire-session-manager.service
 /systemd/user/pipewire.service
 /systemd/user/pipewire.socket
 /systemd/user/sway-session.target
 /systemd/user/tray.target
-/systemd/user/wireplumber.service
 /user-dirs.conf
 /user-dirs.dirs
