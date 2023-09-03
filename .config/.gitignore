@@ -1,3 +1,4 @@
+/elvish/lib/aliases.elv
 /elvish/lib/direnv.elv
 /elvish/rc.elv
 /environment.d/10-home-manager.conf

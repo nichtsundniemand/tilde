@@ -20,7 +20,6 @@ in
     # Basics
     pkgs.bat
     pkgs.elvish
-    pkgs.exa
     pkgs.htop
     pkgs.jq
     pkgs.zsh
@@ -64,7 +63,6 @@ in
     # mediainfo-23.04
     # minicom-2.8
     # nautilus-44.2.1
-    # ncdu-2.2.2
     # netcat-gnu-0.7.1
     # nmap-7.94
     # pulseview-0.4.2
@@ -122,6 +120,7 @@ in
 
     # elvish
     ".config/elvish/rc.elv".text = ''
+        use aliases
         use direnv
         use re
         use str
@@ -135,7 +134,43 @@ in
         		put (styled ' '$path' ' bg-$bg fg-$fg)(styled ' ' fg-$bg)
         	}
         }
+
+        var git-kak~ = $aliases:git-kak~
+        var ls~ = $aliases:ls~
+        var ncdu~ = $aliases:ncdu~
     '';
+    ".config/elvish/lib/aliases.elv".text = (progs: ''
+        use path
+
+        fn git-kak {|@args|
+        	var repo = (${progs.git} rev-parse --show-toplevel)
+        	var session = (path:base $repo)
+
+        	if (not (has-value [(${progs.kakoune} -l)] $session)) {
+        		systemctl --user start git-kak@(systemd-escape $repo)
+        	}
+        	while (not (has-value [(${progs.kakoune} -l)] $session)) {
+        		sleep 0.01
+        	}
+
+        	${progs.kakoune} -c $session $@args
+        }
+
+        fn ls {|@args|
+        	${progs.exa} --icons $@args
+        }
+
+        fn ncdu {|@args|
+        	${progs.ncdu} --color dark $@args
+        }
+
+        del path:
+    '') {
+	  exa = "${pkgs.exa}/bin/exa";
+	  git = "${config.programs.git.package}/bin/git";
+	  kakoune = "${config.programs.kakoune.package}/bin/kak";
+	  ncdu = "${pkgs.ncdu}/bin/ncdu";
+    };
     ".config/elvish/lib/direnv.elv".text = ''
         ## hook for direnv
         set @edit:before-readline = $@edit:before-readline {
