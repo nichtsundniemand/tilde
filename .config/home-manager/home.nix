@@ -22,7 +22,6 @@ in
     pkgs.elvish
     pkgs.htop
     pkgs.jq
-    pkgs.zsh
 
     # Development
     pkgs.cargo
