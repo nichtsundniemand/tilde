@@ -170,25 +170,8 @@ in
 	  kakoune = "${config.programs.kakoune.package}/bin/kak";
 	  ncdu = "${pkgs.ncdu}/bin/ncdu";
     };
-    ".config/elvish/lib/direnv.elv".text = ''
-        ## hook for direnv
-        set @edit:before-readline = $@edit:before-readline {
-        	try {
-        		var m = [("${pkgs.direnv}/bin/direnv" export elvish | from-json)]
-        		if (> (count $m) 0) {
-        			set m = (all $m)
-        			keys $m | each { |k|
-        				if $m[$k] {
-        					set-env $k $m[$k]
-        				} else {
-        					unset-env $k
-        				}
-        			}
-        		}
-        	} catch e {
-        		echo $e
-        	}
-        }
+    ".config/elvish/lib/direnv.elv".source = pkgs.runCommand "elvish-direnv" {} ''
+      ${pkgs.direnv}/bin/direnv hook elvish > $out
     '';
   };
 
