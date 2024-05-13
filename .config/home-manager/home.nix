@@ -113,8 +113,8 @@ in
     # Hacks to allow running pipewire as a user service...
     ".config/systemd/user/pipewire.service".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire.service";
     ".config/systemd/user/pipewire.socket".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire.socket";
-    ".config/systemd/user/pipewire-pulse.service".source = "${pkgs.pipewire.pulse}/lib/systemd/user/pipewire-pulse.service";
-    ".config/systemd/user/pipewire-pulse.socket".source = "${pkgs.pipewire.pulse}/lib/systemd/user/pipewire-pulse.socket";
+    ".config/systemd/user/pipewire-pulse.service".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire-pulse.service";
+    ".config/systemd/user/pipewire-pulse.socket".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire-pulse.socket";
     ".config/systemd/user/pipewire-session-manager.service".source = "${pkgs.wireplumber.out}/lib/systemd/user/wireplumber.service";
 
     # Make ALSA-clients play nice with pipewire
@@ -169,7 +169,7 @@ in
         }
 
         fn ls {|@args|
-        	${progs.exa} --icons $@args
+        	${progs.eza} --icons $@args
         }
 
         fn ncdu {|@args|
@@ -178,7 +178,7 @@ in
 
         del path:
     '') {
-	  exa = "${pkgs.exa}/bin/exa";
+	  eza = "${pkgs.eza}/bin/eza";
 	  git = "${config.programs.git.package}/bin/git";
 	  kakoune = "${config.programs.kakoune.package}/bin/kak";
 	  ncdu = "${pkgs.ncdu}/bin/ncdu";
@@ -239,7 +239,7 @@ in
         ];
       };
 
-      extraConfig = "eval %sh{${pkgs.kakounePlugins.kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}";
+      extraConfig = "eval %sh{${pkgs.kakounePlugins.kakoune-lsp}/bin/kak-lsp --kakoune -s $kak_session}";
     };
 
     kitty = {
