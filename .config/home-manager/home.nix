@@ -117,6 +117,19 @@ in
     ".config/systemd/user/pipewire-pulse.socket".source = "${pkgs.pipewire.pulse}/lib/systemd/user/pipewire-pulse.socket";
     ".config/systemd/user/pipewire-session-manager.service".source = "${pkgs.wireplumber.out}/lib/systemd/user/wireplumber.service";
 
+    # Make ALSA-clients play nice with pipewire
+    ".config/alsa/asoundrc".text = ''
+        ctl_type.pipewire {
+            lib "${pkgs.pipewire.out}/lib/alsa-lib/libasound_module_ctl_pipewire.so"
+        }
+
+        pcm_type.pipewire {
+            lib "${pkgs.pipewire.out}/lib/alsa-lib/libasound_module_pcm_pipewire.so"
+        }
+
+        <${pkgs.pipewire.out}/share/alsa/alsa.conf.d/99-pipewire-default.conf>
+    '';
+
     # elvish
     ".config/elvish/rc.elv".text = ''
         use aliases
