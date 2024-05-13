@@ -110,13 +110,6 @@ in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
 
-    # Hacks to allow running pipewire as a user service...
-    ".config/systemd/user/pipewire.service".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire.service";
-    ".config/systemd/user/pipewire.socket".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire.socket";
-    ".config/systemd/user/pipewire-pulse.service".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire-pulse.service";
-    ".config/systemd/user/pipewire-pulse.socket".source = "${pkgs.pipewire.out}/lib/systemd/user/pipewire-pulse.socket";
-    ".config/systemd/user/pipewire-session-manager.service".source = "${pkgs.wireplumber.out}/lib/systemd/user/wireplumber.service";
-
     # Make ALSA-clients play nice with pipewire
     ".config/alsa/asoundrc".text = ''
         ctl_type.pipewire {
@@ -256,6 +249,126 @@ in
       enable = true;
       config.ytdl-format = "bestvideo[height<=720]+bestaudio/best";
       scriptOpts.ytdl_hook.ytdl_path = "${pkgs.yt-dlp}/bin/yt-dlp";
+    };
+  };
+
+  # Allow running pipewire as a user service...
+  systemd.user = {
+    services = {
+      pipewire = {
+        Unit = {
+          Description = "PipeWire Multimedia Service";
+          Requires = "pipewire.socket";
+        };
+
+        Service = {
+          LockPersonality = "yes";
+          MemoryDenyWriteExecute = "yes";
+          NoNewPrivileges = "yes";
+          RestrictNamespaces = "yes";
+          SystemCallArchitectures = "native";
+          SystemCallFilter = "@system-service";
+          Type = "simple";
+          ExecStart = "${pkgs.pipewire.out}/bin/pipewire";
+          Restart = "on-failure";
+          Slice = "session.slice";
+        };
+
+        Install = {
+          Also = "pipewire.socket";
+          WantedBy = ["default.target"];
+        };
+      };
+
+      pipewire-pulse = {
+        Unit = {
+          Description = "PipeWire PulseAudio";
+          Requires = "pipewire-pulse.socket";
+          ConditionUser = "!root";
+          Wants = "pipewire.service pipewire-session-manager.service";
+          After = "pipewire.service pipewire-session-manager.service";
+          Conflicts = "pulseaudio.service";
+        };
+
+        Service = {
+          LockPersonality = "yes";
+          MemoryDenyWriteExecute = "yes";
+          NoNewPrivileges = "yes";
+          RestrictNamespaces = "yes";
+          SystemCallArchitectures = "native";
+          SystemCallFilter = "@system-service";
+          Type = "simple";
+          ExecStart = "${pkgs.pipewire.out}/bin/pipewire-pulse";
+          Restart = "on-failure";
+          Slice = "session.slice";
+        };
+
+        Install = {
+          Also = "pipewire-pulse.socket";
+          WantedBy = ["default.target"];
+        };
+      };
+
+      wireplumber = {
+        Unit = {
+          Description = "Multimedia Service Session Manager";
+          After = "pipewire.service";
+          BindsTo = "pipewire.service";
+          Conflicts = "pipewire-media-session.service";
+        };
+
+        Service = {
+          LockPersonality = "yes";
+          MemoryDenyWriteExecute = "yes";
+          NoNewPrivileges = "yes";
+          SystemCallArchitectures = "native";
+          SystemCallFilter = "@system-service";
+          Type = "simple";
+          ExecStart = "${pkgs.wireplumber.out}/bin/wireplumber";
+          Restart = "on-failure";
+          Slice = "session.slice";
+          Environment = "GIO_USE_VFS=local";
+        };
+
+        Install = {
+          WantedBy = ["pipewire.service"];
+          Alias = "pipewire-session-manager.service";
+        };
+      };
+    };
+
+    sockets = {
+      pipewire = {
+        Unit = {
+          Description = "PipeWire Multimedia System Sockets";
+        };
+
+        Socket = {
+          Priority = 6;
+          ListenStream = ["%t/pipewire-0" "%t/pipewire-0-manager"];
+        };
+
+        Install = {
+          WantedBy = ["sockets.target"];
+        };
+      };
+
+      pipewire-pulse = {
+        Unit = {
+          Description = "PipeWire PulseAudio";
+          ConditionUser = "!root";
+          Conflicts = "pulseaudio.socket";
+        };
+
+        Socket = {
+          Priority = 6;
+          ListenStream = "%t/pulse/native";
+        };
+
+        Install = {
+          WantedBy = ["sockets.target"];
+        };
+      };
     };
   };
 
