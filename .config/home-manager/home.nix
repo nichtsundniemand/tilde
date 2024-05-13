@@ -444,15 +444,15 @@ in
     '';
   };
 
-  xdg.userDirs = {
+  xdg.userDirs = let root = config.home.homeDirectory; in {
     enable = true;
-    desktop = "${config.home.homeDirectory}/tmp";
-    download = "${config.home.homeDirectory}/downloads";
-    templates = "${config.home.homeDirectory}/";
-    publicShare = "${config.home.homeDirectory}/";
-    documents = "${config.home.homeDirectory}/docs";
-    music = "${config.home.homeDirectory}/media/music";
-    pictures = "${config.home.homeDirectory}/media/images";
-    videos = "${config.home.homeDirectory}/media/movies";
+    desktop = "${root}/tmp";
+    download = "${root}/downloads";
+    templates = "${root}/";
+    publicShare = "${root}/";
+    documents = "${root}/docs";
+    music = "${root}/media/music";
+    pictures = "${root}/media/images";
+    videos = "${root}/media/movies";
   };
 }
