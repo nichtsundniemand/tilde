@@ -335,6 +335,20 @@ in
           Alias = "pipewire-session-manager.service";
         };
       };
+
+      # Make GNOME apps happy
+      dconf = {
+        Unit = {
+          Description="User preferences database";
+          Documentation="man:dconf-service(1)";
+        };
+
+        Service = {
+          ExecStart="${pkgs.dconf.lib}/libexec/dconf-service";
+          Type="dbus";
+          BusName="ca.desrt.dconf";
+        };
+      };
     };
 
     sockets = {
