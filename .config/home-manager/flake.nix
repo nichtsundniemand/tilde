@@ -17,13 +17,19 @@
   outputs = { nixpkgs, home-manager, sops-nix, ... }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
     in {
       homeConfigurations."wirklichniemand" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        pkgs = nixpkgs.legacyPackages.${system};
 
         modules = [ ./home.nix ];
         extraSpecialArgs = { sops-nix = sops-nix; };
       };
+
+      nixosModules.wirklichniemand = {config, lib, pkgs, utils, ...}: home-manager.nixosModule {
+          inherit config lib pkgs utils;
+          home-manager.users.wirklichniemand = import ./home.nix;
+      };
+
+      homeNix = import ./home.nix;
     };
 }
