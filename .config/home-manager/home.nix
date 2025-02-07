@@ -160,10 +160,10 @@ in
 
         del path:
     '') {
-	  eza = "${pkgs.eza}/bin/eza";
-	  git = "${config.programs.git.package}/bin/git";
-	  kakoune = "${config.programs.kakoune.package}/bin/kak";
-	  ncdu = "${pkgs.ncdu}/bin/ncdu";
+      eza = "${pkgs.eza}/bin/eza";
+      git = "${config.programs.git.package}/bin/git";
+      kakoune = "${config.programs.kakoune.package}/bin/kak";
+      ncdu = "${pkgs.ncdu}/bin/ncdu";
     };
     ".config/elvish/lib/direnv.elv".source = pkgs.runCommand "elvish-direnv" {} ''
       ${pkgs.direnv}/bin/direnv hook elvish > $out
