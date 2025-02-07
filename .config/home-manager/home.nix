@@ -196,7 +196,12 @@ in
       userEmail = "rufus.schaefing@gmail.com";
 
       extraConfig.core.editor = "${config.programs.kakoune.package}/bin/kak";
-      delta.enable = true;
+      delta = {
+        enable = true;
+        options = {
+          pager = "${pkgs.less}/bin/less";
+        };
+      };
     };
 
     kakoune = {
