@@ -246,9 +246,9 @@ in
     };
   };
 
-  # Allow running pipewire as a user service...
   systemd.user = {
     services = {
+      # Allow running pipewire as a user service...
       pipewire = {
         Unit = {
           Description = "PipeWire Multimedia Service";
@@ -346,6 +346,7 @@ in
     };
 
     sockets = {
+      # Allow running pipewire as a user service...
       pipewire = {
         Unit = {
           Description = "PipeWire Multimedia System Sockets";
