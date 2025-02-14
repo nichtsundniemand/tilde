@@ -208,6 +208,7 @@ in
       enable = true;
       plugins = [
         pkgs.gopls
+        pkgs.nil
         pkgs.python310Packages.python-lsp-server
         pkgs.rust-analyzer
       ];
@@ -220,7 +221,7 @@ in
         hooks = [
           {
             name = "WinSetOption";
-            option = "filetype=(c|cpp|go|rust|python)";
+            option = "filetype=(c|cpp|go|nix|rust|python)";
             commands = "lsp-enable-window";
           }
         ];
