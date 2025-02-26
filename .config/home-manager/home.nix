@@ -18,10 +18,22 @@ in
 
   home.packages = [
     # Basics
+    pkgs.age
     pkgs.bat
     pkgs.elvish
     pkgs.htop
     pkgs.jq
+    (pkgs.passage.overrideAttrs {
+      postInstall = ''
+        substituteInPlace $out/bin/passage --replace 'PROGRAM="''${0##*/}"' 'PROGRAM=passage'
+        wrapProgram $out/bin/passage \
+          --prefix PATH : $extraPath \
+          --argv0 $pname \
+          --set-default EDITOR ${config.programs.kakoune.package}/bin/kak \
+          --set-default PASSAGE_DIR ${config.home.homeDirectory}/.local/share/passage/store \
+          --set-default PASSAGE_IDENTITIES_FILE ${config.home.homeDirectory}/.local/share/passage/identities
+      '';
+    })
 
     # Development
     pkgs.cargo
